@@ -1,0 +1,69 @@
+{
+  "skill_name": "jekyll",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In my Jekyll site, turn _drafts/remote-work-notes.md into a post for 2026-09-01. Keep its existing front matter convention, then run the right build command to confirm it works.",
+      "expected_output": "The draft is moved to a correctly dated _posts filename, its established front matter is preserved or minimally updated, and the site build is verified.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Publishes the draft as _posts/2026-09-01-remote-work-notes.md and removes the original draft.",
+          "type": "file_check"
+        },
+        {
+          "text": "Preserves the draft title, layout, categories, and tags in front matter.",
+          "type": "content_check"
+        },
+        {
+          "text": "Reports a Jekyll build attempt and its result.",
+          "type": "report_check"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Start this Jekyll site locally in the background so I can preview a draft. I need the server to include drafts, leave a log I can inspect, and tell me how to stop only the server you started.",
+      "expected_output": "A background Jekyll server is started with --drafts, a log and PID are recorded, and the response gives the local URL and a safe stop command.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Uses --drafts in the Jekyll server command.",
+          "type": "report_check"
+        },
+        {
+          "text": "Records a server log path and PID path.",
+          "type": "report_check"
+        },
+        {
+          "text": "Gives a stop command scoped to the recorded PID.",
+          "type": "report_check"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Jekyll theme has a footer I need to change, but it comes from a gem-based theme. Show me the smallest safe way to override it. Also move our repeating team member information out of templates into site data.",
+      "expected_output": "The response identifies a local _includes override for the relevant theme file, places structured team data under _data, uses site.data in templates, and verifies the build.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Adds a local _includes/footer.html override without copying unrelated theme files.",
+          "type": "file_check"
+        },
+        {
+          "text": "Adds structured team data under _data/team.yml.",
+          "type": "file_check"
+        },
+        {
+          "text": "Renders team members through site.data.team in the index template.",
+          "type": "content_check"
+        },
+        {
+          "text": "Reports a Jekyll build attempt and its result.",
+          "type": "report_check"
+        }
+      ]
+    }
+  ]
+}
